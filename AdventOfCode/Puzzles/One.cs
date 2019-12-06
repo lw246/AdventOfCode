@@ -16,7 +16,7 @@ namespace AdventOfCode.Puzzles
 		{
 			fuelRequirement = 0;
 
-			foreach (double moduleMass in LoadData())
+			foreach (var moduleMass in Helpers.CovertListToDoubleArray(Resources.PuzzleResources.PuzzleOne))
 			{
 				fuelRequirement += CalculateFuelForModule(moduleMass);
 			}
@@ -24,25 +24,23 @@ namespace AdventOfCode.Puzzles
 			return fuelRequirement.ToString(CultureInfo.InvariantCulture);
 		}
 
-		private static double CalculateFuelForModule(double moduleMass)
+		public static double CalculateFuelForModule(double moduleMass)
 		{
-			return CalculateFuel(moduleMass);
+			var fuel = CalculateFuel(moduleMass);
+			var totalFuel = fuel;
+
+			while (CalculateFuel(fuel) > 0)
+			{
+				fuel = CalculateFuel(fuel);
+				totalFuel += fuel;
+			}
+
+			return totalFuel;
 		}
 
 		public static double CalculateFuel(double mass)
 		{
-			var fuel = Math.Floor(mass / 3) - 2;
-
-			if (fuel <= 0) return fuel;
-
-			fuel =+ CalculateFuel(fuel);
-			return fuel;
+			return Math.Floor(mass / 3) - 2;
 		}
-
-		private static IEnumerable LoadData()
-		{
-			return Array.ConvertAll(Resources.PuzzleResources.PuzzleOne.Split("\r\n"), double.Parse);
-		}
-
 	}
 }

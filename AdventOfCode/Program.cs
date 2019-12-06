@@ -15,6 +15,9 @@ namespace AdventOfCode
 				case Puzzle.One:
 					Console.WriteLine($"Fuel for modules: {One.Solve()}");
 					break;
+				case Puzzle.Two:
+					Console.WriteLine($"Position Zero is: {Two.Solve()}");
+					break;
 				default:
 					Console.WriteLine("No Puzzle solution found");
 					break;

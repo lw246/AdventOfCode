@@ -1,8 +1,9 @@
-using AdventOfCode.Puzzles;
+﻿using AdventOfCode.Puzzles;
 using NUnit.Framework;
 
-namespace Tests
+namespace AdventOfCodeTests
 {
+	[TestFixture]
 	public class PuzzleOne
 	{
 		[Test]
@@ -10,7 +11,7 @@ namespace Tests
 		{
 			double moduleMass = 1969;
 
-			var result = One.CalculateFuel(moduleMass);
+			var result = One.CalculateFuelForModule(moduleMass);
 
 			Assert.AreEqual(966, result);
 		}
